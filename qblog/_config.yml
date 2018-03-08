@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: XuQ's Blog
-subtitle: 加油
-description: 博客, iOS, python, Android, 苹果, 安卓, 反思, 总结, 记录, 
-author: qxu
-language: zh-CN
+title: 许路爸爸的部落格
+subtitle: Fighting
+description: 博客, iOS, python, Android, 苹果, 安卓, 反思, 总结, 记录 
+author: 许路爸爸
+language: zh-Hans
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://antwork.github.io/blog/
-root: /
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -72,11 +72,18 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: polarbear
+theme: next
 
 # Extensions
 Plugins:
 - hexo-generator-feed
+
+# Search
+search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
 
 #Feed Atom
 feed:
