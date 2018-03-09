@@ -14,15 +14,14 @@ after_script:
 - git add .
 - git commit -m "Travis CI Auto Builder"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-- ssh root@${CLOUD_IP}
+after_success:
+- ssh root@$118.24.152.130
 - cd ${CLOUD_PATH} # 打开git文件夹
 - git config user.name "antwork" # 修改name
 - git config user.email "antwork@126.com" # 修改email
 - git fetch --all  
 - git reset --hard origin/master 
-- git pull      
-addons:
-  ssh_known_hosts: ${CLOUD_IP}
+- git pull
 branches:
   only:
   - blog-source
@@ -33,8 +32,4 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_36f01d5cb599_key -iv $encrypted_36f01d5cb599_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-# Start SSH agent
-- eval $(ssh-agent)
-# Add the private key to the system
-- ssh-add ~/.ssh/id_rsa
-- echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host 118.24.152.130\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
