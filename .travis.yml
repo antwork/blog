@@ -18,7 +18,7 @@ after_script:
 - cd ${CLOUD_PATH} # 打开git文件夹
 - git config user.name "antwork" # 修改name
 - git config user.email "antwork@126.com" # 修改email
-- git fetch --all  # git拉起合并冲突以服务器版本为准
+- git fetch --all  
 - git reset --hard origin/master 
 - git pull      
 addons:
