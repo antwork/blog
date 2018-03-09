@@ -2,13 +2,17 @@ language: node_js
 node_js: stable
 addons:
   ssh_known_hosts: ${CLOUD_IP}
+before_install:
+- openssl aes-256-cbc -K $encrypted_36f01d5cb599_key -iv $encrypted_36f01d5cb599_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
 - cd qblog
 - npm install
 script:
 - hexo clean
 - hexo g
-after_script:
 - cd ./public
 - git init
 - git config user.name "antwork"
@@ -16,7 +20,8 @@ after_script:
 - git add .
 - git commit -m "Travis CI Auto Builder"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-- ssh root@${CLOUD_IP}
+after_success:
+- ssh root@${CLOUD_IP} "./travis_build"
 - cd ${CLOUD_PATH} # 打开git文件夹
 - git config user.name "antwork" # 修改name
 - git config user.email "antwork@126.com" # 修改email
@@ -29,8 +34,3 @@ branches:
 env:
   global:
   - GH_REF: github.com/antwork/blog.git
-before_install:
-- openssl aes-256-cbc -K $encrypted_36f01d5cb599_key -iv $encrypted_36f01d5cb599_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
