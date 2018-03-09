@@ -22,8 +22,7 @@ after_script:
 - git reset --hard origin/master 
 - git pull      
 addons:
-  ssh_known_hosts:
-  - ${CLOUD_IP}
+  ssh_known_hosts: ${CLOUD_IP}
 branches:
   only:
   - blog-source
