@@ -6,7 +6,6 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_36f01d5cb599_key -iv $encrypted_36f01d5cb599_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-- echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
 - cd qblog
 - npm install
@@ -21,14 +20,7 @@ script:
 - git commit -m "Travis CI Auto Builder"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 after_success:
-- cd ..
-- ssh root@${CLOUD_IP}
-- cd ${CLOUD_PATH} # 打开git文件夹
-- git config user.name "antwork" # 修改name
-- git config user.email "antwork@126.com" # 修改email
-- git fetch --all  
-- git reset --hard origin/master 
-- git pull
+  - ssh root@118.24.152.130 "./pullblog"
 branches:
   only:
   - blog-source

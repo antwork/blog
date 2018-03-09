@@ -1,5 +1,5 @@
 ---
-title: hexo,travis,gitub搭建博客总结
+title: hexo,travis,gitub搭建博客总结(心酸,心爽)
 date: 2018-03-08 22:26:52
 tags: hexo
 ---
@@ -65,5 +65,12 @@ hexo s -p 5000 # 启动服务, 端口=5000
 ```
 
 ### Travis使用
+
+1. addons: 必须使用原文, 不能使用${ENV_VAR}
+2. ssh后不能继续- 命令了, 而应该在接下来的使用`ssh name@ip "cmd"` 将服务端的命令打包为一个shell脚本, 既对外隐藏了具体内容, 起到保护作用
+3. shh方法
+
+参考:
+[Travis CI 系列：自动化部署博客](https://segmentfault.com/a/1190000011218410)
 
 ... 挖坑
