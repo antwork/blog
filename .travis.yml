@@ -14,7 +14,7 @@ after_script:
 - git add .
 - git commit -m "Travis CI Auto Builder"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-- ssh root@${CLOUD_IP} -p ${CLOUD_PASS}  # 登录云服务器
+- ssh root@${CLOUD_IP}
 - cd ${CLOUD_PATH} # 打开git文件夹
 - git config user.name "antwork" # 修改name
 - git config user.email "antwork@126.com" # 修改email
