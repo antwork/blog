@@ -14,6 +14,10 @@ after_script:
     - git add .
     - git commit -m "Travis CI Auto Builder"
     - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master # GH_TOKEN是在Travis中配置token的名称
+    - ssh root@${CLOUD_IP} -p ${CLOUD_PASS}  # 登录云服务器
+    - cd CLOUD_PATH # 打开git文件夹
+    - git pull      # 拉取更新
+
 branches:
     only:
         - blog-source #只监测hexo分支，hexo是我的分支的名称，可根据自己情况设置
