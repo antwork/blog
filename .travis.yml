@@ -21,6 +21,7 @@ script:
 - git commit -m "Travis CI Auto Builder"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 after_success:
+- cd ..
 - ssh root@${CLOUD_IP}
 - cd ${CLOUD_PATH} # 打开git文件夹
 - git config user.name "antwork" # 修改name
