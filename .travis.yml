@@ -37,6 +37,4 @@ before_install:
 - eval $(ssh-agent)
 # Add the private key to the system
 - ssh-add ~/.ssh/id_rsa
-# Copy SSH config
-- cp .travis/ssh_config ~/.ssh/config
 - echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
