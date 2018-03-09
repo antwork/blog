@@ -1,5 +1,5 @@
 ---
-title: hexo使用总结
+title: hexo,travis,gitub搭建博客总结
 date: 2018-03-08 22:26:52
 tags: hexo
 ---
