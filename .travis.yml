@@ -21,7 +21,9 @@ after_script:
 - git fetch --all  # git拉起合并冲突以服务器版本为准
 - git reset --hard origin/master 
 - git pull      
-
+addons:
+  ssh_known_hosts:
+  - ${CLOUD_IP}
 branches:
   only:
   - blog-source
@@ -29,8 +31,7 @@ env:
   global:
   - GH_REF: github.com/antwork/blog.git
 before_install:
-- ssh-keygen -f "/root/.ssh/known_hosts" -R ${CLOUD_IP}
 - openssl aes-256-cbc -K $encrypted_36f01d5cb599_key -iv $encrypted_36f01d5cb599_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
-- echo -e "Host 118.24.152.130\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host ${CLOUD_IP}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
