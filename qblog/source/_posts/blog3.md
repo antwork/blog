@@ -79,6 +79,14 @@ FATAL ~/Documents/GitHub/myblog not empty, please run `hexo init` on an empty fo
 FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
 ```
 
+博客建完，你可能注意到我们并没有使用hexo的部署功能，因为我们准备使用travis自动化部署，进入下一篇[创建博客-自动化部署Traviss](/blog/2018/03/09/blog4/)
+
+
+
+
+*补充内容*
+
+---
 
 ### 常用指令:
 
@@ -129,8 +137,6 @@ local_search:
   # show top n results per article, show all results by setting to -1
   top_n_per_article: 1
 ```
-
-博客建完，并且部署到Github了，进入下一篇[创建博客-自动化部署Traviss](/blog/2018/03/09/blog4/)
 
 ---
 心酸心爽博客系列
