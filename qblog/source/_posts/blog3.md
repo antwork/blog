@@ -1,5 +1,5 @@
 ---
-title: 心酸心爽博客-Hexo生成博客网站
+title: 创建博客-Hexo生成博客网站
 date: 2018-03-09 22:52:01
 tags:
 - travis
@@ -14,7 +14,71 @@ tags:
 > [Hexo中文官网](https://hexo.io/zh-cn/)    
 > [docs/commands.html](https://hexo.io/zh-cn/docs/commands.html)
 
-*官网的文档已经很简略了，我就不重复，自己去看文档，这里就做点代码注释吧。*
+### 打开方式
+> 注：以下脚本中#之后为注释，不需要键入
+> 打开终端
+
+```shell
+$ cd myblog   # 打开博客文件夹(可键入cd 然后将博客文件夹拖入终端)
+$ mkdir temp  # 创建临时文件夹(原因最后解释）
+$ cd temp	  # 打开临时文件夹
+$ hexo init   # 初始hexo
+...			  # 一堆信息， 最后提示Start blogging with Hexo!
+$ cd ..		  # 切回父文件夹
+$ mv temp/* . # 将temp里的内容移到父文件夹
+$ ls 		  # 通过ls命令检查是否移动成功
+_config.yml		package.json		temp
+node_modules		scaffolds		themes
+package-lock.json	source
+$ rm -rf temp	 # 移除temp文件夹
+$ ls 			 # 通过ls命令检查是否删除temp成功
+_config.yml		package.json		themes
+node_modules		scaffolds
+package-lock.json	source
+$ hexo g	# 生成静态网站
+$ hexo s	# 开启本机服务，用于本地预览静态网站
+INFO  Start processing
+INFO  Hexo is running at http://localhost:5000/. Press Ctrl+C to stop.
+```
+打开浏览器，输入 localhost:4000，见到下图表示你成功了🎉🎉🎉。
+![hexo本地服务启动成功](/blog/assets/githubblog/Snip20180311_18.png)
+
+#### 写文章
+
+```shell
+$ hexo new 你好hexo # 使用hexo new 创建博文
+INFO  Created: ~/Documents/GitHub/myblog/source/_posts/你好hexo.md # 提示成功，并告知文件地址。
+$ hexo clean    # 清除public等已生成静态网站
+$ hexo g		# 重新生成静态网站
+$ hexo s 		# 开启本地预览服务
+```
+如下图所示，新写的你好hexo.md已经成功上屏了。
+![hexo本地服务启动成功](/blog/assets/githubblog/Snip20180311_20.png)
+
+### 草稿-发布模式
+```shell
+$ hexo new draft hello2 # 创建草稿
+$ hexo g				# 生成网站
+$ hexo s --draft		# 开启本地服务-草稿模式，否则看不到草稿
+$ hexo publish hello2   # 发布hello2
+$ hexo s			    # 开启本地服务
+```
+草稿模式（成功发布）后如下图所示：
+![hexo本地服务启动成功](/blog/assets/githubblog/Snip20180311_22.png)
+
+## FAQ
+
+**Q1**: 如果hexo s提示错误： Port 4000 has been used. Try other port instead.   
+**A1**: 使用 hexo s -p 5000 将端口指定为5000
+
+**Q2**: 为啥要创建临时文件夹，不直接在blog目录调用hexo init, 官网文档，如果init后面没有文件夹，则在当前文件夹初始    
+**A2**: 原因为当前文件夹已存在文件，并且因为是git仓库，肯定会有.git文件夹，这里通过创建临时文件夹避开这个错误
+
+```
+FATAL ~/Documents/GitHub/myblog not empty, please run `hexo init` on an empty folder and then copy your files into it
+FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+```
+
 
 ### 常用指令:
 
@@ -66,11 +130,11 @@ local_search:
   top_n_per_article: 1
 ```
 
-博客建完，并且部署到Github了，进入下一篇[自动化部署-Travis](/blog/2018/03/09/blog4/)
+博客建完，并且部署到Github了，进入下一篇[创建博客-自动化部署Traviss](/blog/2018/03/09/blog4/)
 
 ---
 心酸心爽博客系列
 
-* [博客存储-使用GitHub存储博客](/blog/2018/03/09/blog2/)
-* [博客生成-Hexo生成博客网站](/blog/2018/03/09/blog3/)
-* [自动化部署-Travis](/blog/2018/03/09/blog4/)
+* [创建博客-使用GitHub存储博客](/blog/2018/03/09/blog2/)
+* [创建博客-Hexo生成博客网站](/blog/2018/03/09/blog3/)
+* [创建博客-自动化部署Travis](/blog/2018/03/09/blog4/)
