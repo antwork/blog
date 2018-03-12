@@ -108,9 +108,17 @@ env:
 ### 部署到自己的服务器
 目前为止，Travis已经能够检测到Github blog-source分支变化，下一步是推送静态网站到自己的服务器。
 
-原理：travis ssh登录到远程服务器，执行pull操作更新服务器中静态网站，因为travis都是自动化，所以不能有任何人为参与，这里就需要使用到ssh passphase登录模式。
+**原理**：
 
-相关步骤参照： [Travis CI 系列：自动化部署博客](https://segmentfault.com/a/1190000011218410)
+1. 服务端部署的是静态网站，也就是github博客的master分支，所以需要您登录您的服务器，将github master分支checkout到你指定的文件夹，然后配置好nginx，配好能够查看您的博客就表示配置ok。
+2. travis部分：ssh登录到远程服务器，执行pull操作将github master分支更新到服务器。
+
+>因为travis都是自动化，所以不能有任何人为参与，这里就需要使用到ssh passphase登录模式。
+
+相关步骤参照： 
+
+* [Travis CI 系列：自动化部署博客](https://segmentfault.com/a/1190000011218410)
+* [不仅仅是前端er——折腾服务器武装自己](https://segmentfault.com/a/1190000013242438)
 
 补充几点：
 
@@ -152,6 +160,16 @@ echo "run end"
 ```
 > * 注意我已经拉取博客仓库代码到服务器文件夹/home/www/blog中，所以travis只要执行pull就可以了	
 > * 因为静态网站变化挺多的，所以合并时使用服务器版本。
+
+### 关于ssh
+[https://www.ssh.com/ssh/command/#sec-SSH-Command-in-Linux](https://www.ssh.com/ssh/command/#sec-SSH-Command-in-Linux) 
+在其他服务器上远程执行代码， 语法：`ssh hostname command`		
+实际测试以下两个命令是等效的, 脚本应该是通过调用了eval("字符串"）来实现调用功能
+
+```shell
+ssh root@118.24.152.130 "ls /home/www"
+ssh root@118.24.152.130 ls /home/www
+```
 
 到此博客就算搭完了😊，后续博文只要写好后推送到github仓库，travis就会自动生成静态网站，然后推送回github，并且触发服务端的脚本来服务器的静态网站。写完三篇都累屎了，完结撒花~
 
