@@ -8,6 +8,7 @@ tags:
 - hexo
 - github
 - ssh
+copyright: true
 ---
 
 

@@ -8,6 +8,7 @@ tags:
 - hexo
 - github
 - ssh
+copyright: true
 ---
 
 travis的使用其实挺简单，简略步骤：
