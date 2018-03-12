@@ -9,6 +9,12 @@ before_install:
 install:
 - cd qblog
 - npm install
+notifications:
+  email:
+    recipients:
+    - antwork@126.com
+    on_success: always
+    on_failure: always
 script:
 - hexo clean
 - hexo g
