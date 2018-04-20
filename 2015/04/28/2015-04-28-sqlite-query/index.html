@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f93ec00131aca82e97299c9b3a8a0a27";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="sqlite3," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="吃了代码的猫" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="sqlite3的基本用法">
+<meta name="keywords" content="sqlite3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlite3的使用1-操作">
+<meta property="og:url" content="https://xizhipian.com/blog/2015/04/28/2015-04-28-sqlite-query/index.html">
+<meta property="og:site_name" content="吃了代码的猫">
+<meta property="og:description" content="sqlite3的基本用法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-20T02:41:28.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqlite3的使用1-操作">
+<meta name="twitter:description" content="sqlite3的基本用法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xizhipian.com/blog/2015/04/28/2015-04-28-sqlite-query/"/>
+
+
+
+
+
+  <title>sqlite3的使用1-操作 | 吃了代码的猫</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-115524918-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">吃了代码的猫</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Fighting</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xizhipian.com/blog/blog/2015/04/28/2015-04-28-sqlite-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="许小强">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吃了代码的猫">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">sqlite3的使用1-操作</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-28T09:23:12+00:00">
+                2015-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>sqlite3的基本用法<br><a id="more"></a></p>
+<h3 id="sqlite3的操作"><a href="#sqlite3的操作" class="headerlink" title="sqlite3的操作"></a>sqlite3的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line">select id from foods where name=&apos;jujyfruit&apos;</span><br><span class="line">| 动词 | 主语        | 谓语                 |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">创建表</span><br><span class="line">--------------------------------------------</span><br><span class="line">==语法==</span><br><span class="line">create [temp|tempname] table table_name (column_definitions [, constraints]);</span><br><span class="line"></span><br><span class="line">==说明==</span><br><span class="line">使用temp或temporay关键字声明的表是临时表,这种表是临时的-只存活于当前对话,一旦连接断开,就会被自动销毁</span><br><span class="line"></span><br><span class="line">==示例==</span><br><span class="line">create table contacts (id integer, primary key, </span><br><span class="line">						name text not null collate nocase,</span><br><span class="line">						phone text not null default &apos;UNKNOWN&apos;,</span><br><span class="line">						unique (name, phone));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修改表</span><br><span class="line">-------------------------------------------</span><br><span class="line">==语法==</span><br><span class="line">alter table table_name &#123; rename to name | add column column_def &#125;</span><br><span class="line"></span><br><span class="line">==说明==</span><br><span class="line">花括号表示选择其中一项,实际使用不需要花括号,即要么重命名,要么添加</span><br><span class="line"></span><br><span class="line">==示例==</span><br><span class="line">sqlite&gt; alter table contacts</span><br><span class="line">		add column email text not null default &apos;&apos; collate nocase;</span><br><span class="line">sqlte&gt; .schema contacts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">-------------------------------------------</span><br><span class="line"></span><br><span class="line">选择操作(一种关系)的输出可以是另一个select语句的输入,如:</span><br><span class="line">select name from (select name, type_id from (select * from foods));</span><br><span class="line">里层的结果作为次层的输入</span><br><span class="line"></span><br><span class="line">sql命令的通用形式如下:</span><br><span class="line"></span><br><span class="line">select [distinct] heading</span><br><span class="line">from tables</span><br><span class="line">group by columns</span><br><span class="line">having predicate</span><br><span class="line">order by columns</span><br><span class="line">limit count, offset;</span><br><span class="line"></span><br><span class="line">常用形式:</span><br><span class="line">select heading from tables where predicate;</span><br><span class="line"></span><br><span class="line">示例1:</span><br><span class="line">sqlite&gt; select id, name from food_types;</span><br><span class="line"></span><br><span class="line">示例2:</span><br><span class="line">sqlite&gt; select * from dogs where color=&apos;purple&apos; and grin = &apos;toothy&apos;;</span><br><span class="line"></span><br><span class="line">操作符,包括*+- == != IN AND or等</span><br><span class="line">操作符使用一个或多个输入并产生一个新值作为输出, 只所以叫&apos;操作符&apos;,是因为它完成某种操作并产生结果.</span><br><span class="line">eg:</span><br><span class="line">x = count(episodes.name) </span><br><span class="line">sqlite&gt; select * from foods where name=&apos;july&apos; and type_id=9;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">LIKE</span><br><span class="line">sqlite&gt; select id, name from foods where name like &apos;J%&apos;;</span><br><span class="line"></span><br><span class="line">上例中表示匹配以J开头的食品</span><br><span class="line">模式中的百分号(%)相当于正则中的*,表示0个或多个字符匹配</span><br><span class="line">下划线(_)可与任意单个字符匹配,相当于正则中的+</span><br><span class="line">sqlite&gt; select id, name from foods where name like &apos;%ac%p%&apos;;</span><br><span class="line">通过将%放入左边或右边来进行匹配</span><br><span class="line"></span><br><span class="line">NOT</span><br><span class="line">sqlite&gt; select id, name from foods where name like &apos;%ac%p%&apos; and name not like &apos;%Sch%&apos;;</span><br><span class="line"></span><br><span class="line">GLOB</span><br><span class="line">同like,不过匹配是大小写敏感,并且使用&apos;*&apos;来匹配0到多个,&apos;?&apos;匹配单一字符</span><br><span class="line"></span><br><span class="line">限定和排序</span><br><span class="line"></span><br><span class="line">sqlite&gt; select * from food_types order by id limit 1 offset 1;</span><br><span class="line">sqlite&gt; select * from foods where name like &apos;B%&apos; order by type_id desc, name limit 10;</span><br><span class="line"></span><br><span class="line">sqlite&gt; select * from foods where name like &apos;B%&apos; order by type_id desc, name limit 1 offset 2;</span><br><span class="line">等于下列,使用缩写时,offset总是优先于limit,不过个人感觉还是不要写缩写</span><br><span class="line">sqlite&gt; select * from foods where name like &apos;B%&apos; order by type_id desc, name limit 2, 1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">limit:限制结果集大小</span><br><span class="line">offset:限制结果集范围</span><br><span class="line">注意:limit/offset不会加速查询</span><br><span class="line"></span><br><span class="line">Function和聚合</span><br><span class="line">upper(), lower(), abs(), count()</span><br><span class="line"></span><br><span class="line">sqlite&gt; select id, upper(name), length(name) from foods where type_id =1 limit 10</span><br><span class="line"></span><br><span class="line">结果</span><br><span class="line">id  upper(name) length(name)</span><br><span class="line">--  ----------  ------------</span><br><span class="line">1   BAGELS      6</span><br><span class="line">2   BAGELS, RAI 14</span><br><span class="line"></span><br><span class="line">函数可以是任意表达式的一部分,所以函数也可以用在WHERE子句中:</span><br><span class="line">sqlite&gt; select id, upper(name), length(name) from foods where length(name) &lt; 5 limit 5;</span><br><span class="line"></span><br><span class="line">聚合是一类特殊的函数,它从一组记录中计算聚合值,标准的聚合函数包括sum(), avg(), count(), min(), max(),</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line">sqlite&gt; select count(*) from foods where type_id = 1;</span><br><span class="line">count()返回关系中所有行的数目</span><br><span class="line"></span><br><span class="line">sqlite&gt; select avg(length(name)) from foods;</span><br><span class="line"></span><br><span class="line">分组:</span><br><span class="line">聚合的主要部分就是分组,聚合不只是能够将计算整个结果集的聚合值,黑啊可以吧结果分为多个组,然后计算每个组的聚合值</span><br><span class="line">sqlite&gt; select type_id from foods group by type_id;</span><br><span class="line">group by查询到结果,然后将结果分为共享某个字段上同等值的小组,这些组再传递给select子句.</span><br><span class="line"></span><br><span class="line">sqlite&gt; select type_id, count(*) from foods group by type_id;</span><br><span class="line">type_id count(*)</span><br><span class="line">------- -------</span><br><span class="line">1       47</span><br><span class="line">2       15</span><br><span class="line"></span><br><span class="line">group by 使用类似的值创建分组,但是没有在select子句处理前过滤这些组,having具备这以功能, having 是一个可以应用到group by的断言,having的断言是针对聚合值的</span><br><span class="line">sqlite&gt; select type_id, count(*) from foods group by type_id having count(*) &lt; 20;</span><br><span class="line"></span><br><span class="line">去重复:</span><br><span class="line">distinct</span><br><span class="line">sqlite&gt; select distinct type_id from foods</span><br><span class="line"></span><br><span class="line">多表连接join:</span><br><span class="line">连接是多表数据工作的关键,它是select命令的第一个操作,连接操作的结果作为输入,供select语句的其他部分(过滤)处理.</span><br><span class="line"></span><br><span class="line">sqlite&gt; select foods.name food_types.name from foods, food_types where foods.type_id=food_types.id limit 10</span><br><span class="line"></span><br><span class="line">备注:</span><br><span class="line">使用table_name.column_name的方式,区分哪个字段是那个表的</span><br><span class="line"></span><br><span class="line">内连接(求交集):</span><br><span class="line">sqlite&gt; select * from foods inner join food_types on foods.id == food_types.id;</span><br><span class="line"></span><br><span class="line">左外连接:</span><br><span class="line">sqlite&gt; select * from foods left outer join foods_episodes on foods.id= foods.episodes.food_id;</span><br><span class="line"></span><br><span class="line">举例:</span><br><span class="line">有张表是会员表(左表),有张表是状态表,左连接会员表查询所有会员的状态是吧</span><br><span class="line">如果会员状态不存在就Null,否则将右表的会员状态加到左表结果去</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">名称和别名:</span><br><span class="line">select foods.name, food_types.name from foods, food_types where foods.type_id = food_types.id limit 10;</span><br><span class="line"></span><br><span class="line">等于</span><br><span class="line"></span><br><span class="line">select f.name, t.name from foods f, food_types t where f.type_id = t.id limit 10</span><br><span class="line"></span><br><span class="line">=说明=</span><br><span class="line">foods表取别名f, food_types取别名t,方便某些表明比较长时重复输入长表名</span><br><span class="line"></span><br><span class="line">sqlite&gt; select f.name as food, e1.name e1.session.e2.anme, e2.season </span><br><span class="line">        from episodes e1, foods_episoeds f1, foods f, epsiondes e2, </span><br><span class="line">        foods_episodes fe2</span><br><span class="line">        where </span><br><span class="line">        -- Get foods in season 4</span><br><span class="line">        (e1.id = fe1.epsode_id and e1.season = 4) and fe1.food_id = f.id</span><br><span class="line">        -- link foods with all other episodes</span><br><span class="line">        and (fe1.food_id = fe2.food_id)</span><br><span class="line">        -- link with their respective episodes and filter out e1&apos;s season</span><br><span class="line">        and (fe2.episode_id = e2.id and e2.season ! = e1.season)</span><br><span class="line">        oreder by f.name</span><br><span class="line">        </span><br><span class="line"> food      name        season    name      season</span><br><span class="line"> Bool      The Shoes   4         The abc   1</span><br><span class="line"> </span><br><span class="line"> =说明=</span><br><span class="line"> as关键词是可选的,但倾向保留,不容易混淆</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">子查询:</span><br><span class="line">IN 操作符是一个双目操作,输入一个值和一列值,如果输入的单值存在与列值中,返回真,否则返回假</span><br><span class="line">sqlite&gt; select 1 in (1, 2, 3)</span><br><span class="line">1</span><br><span class="line">sqlite&gt; select 2 in (3, 4, 5)</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">sqlite&gt; select count(*) from foods where type_id in (1, 2)</span><br><span class="line">可以写成这样</span><br><span class="line">sqlite&gt; select count(*) from foods where type_id in (select id from food_types where name=&apos;Ba&apos; or name =&apos;bc&apos;);</span><br><span class="line"> </span><br><span class="line">复合查询:</span><br><span class="line">* 涉及的关系字段数目必须相同</span><br><span class="line">* 只能有一个order by子句,并且处于复合查询的最末尾, 对联合结果进行排序</span><br><span class="line">* </span><br><span class="line">union:联合两个Select语句的结果,会消除重复,不消除采用union all</span><br><span class="line">intersect:求交集</span><br><span class="line">expect:求在a不在b的结果</span><br><span class="line"> </span><br><span class="line">null</span><br><span class="line">使用is null 或者 is not null来判断,不要使用== null,将什么都查不到</span><br></pre></td></tr></table></figure>
+<p>###修改数据</p>
+<ol>
+<li>插入数据</li>
+</ol>
+<p>insert into table (column_list) values (value_list);;<br>变量table指明数据插入到哪个表中.变量column_list使用逗号分隔的字段名称,这些字段必须是表中存在的.变量value_list是用逗号分隔的值列表, 这些值与column_list的字段一一对应.<br>插入一行:<br>sqlite&gt; insert into foods (name, type_id) vlaues (‘cxxx’, 1);<br>sqlite&gt; insert into foods values(NULL, 1, ‘xxx)</p>
+<p>sqlite可以使用last_insert_rowid()获取最后插入的rowid</p>
+<ol>
+<li>更新记录</li>
+</ol>
+<p>update table set update_list where predicate;<br>update_list 是一个或多个”字段赋值”的列表,字段赋值的格式为column_name=value,<br>sqlite&gt; update foods set name=’Cxx’ where name = ‘xxx’;</p>
+<ol>
+<li>删除记录</li>
+</ol>
+<p>delete from table where predicate;</p>
+<p>delete from foods where name=’chonljl’;</p>
+<p>###完整性</p>
+<p>unique<br>primary key<br>not null<br>foreign key<br>check<br>collate<br>default</p>
+<p>示例:<br>id integer primary key autoincreament<br>name text not null collate nocase  //大小写不敏感<br>create table times(id int, date not null default current_date,<br>time not null default current_time,<br>timestamp not null default current_timestamp);</p>
+<p>current_date YYYY-MM-DD<br>current_time HH:MM:SS<br>current_timestamp YYYY-MM-DD HH:MM:SS</p>
+<p>create table contact (id integer primary key, unique(name, phone), check(length(phone)&gt;=7));</p>
+<p>所有字段的check约束都在修改发生前评估,要想 修改成功,所有约束的表达式必须判断为真.</p>
+<p>外键约束:<br>create table table_name<br>(column_definition references foreign_table(column_name)<br>on {delete|update} integerity_action<br>[not] deferrable[intially {deferred|immediate}.]<br>-);</p>
+<p>示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">create table food_types (</span><br><span class="line">	id integer primary key,</span><br><span class="line">	name text</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table foods (</span><br><span class="line">	id integer primary key,</span><br><span class="line">	type_id integer,</span><br><span class="line">	name text</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table foods (</span><br><span class="line">	id integer primary key,</span><br><span class="line">	type_id integer references food_types(id)</span><br><span class="line">	on delete restrict</span><br><span class="line">	deferrable initially deffered,</span><br><span class="line">	name text</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">set null, 如果父值被删除或者不存在了, 剩余的子值改为null</span><br><span class="line">set default, 如果父值被删除或者不存在了,剩余的子值将修改为默认值</span><br><span class="line">cascade:更新父值时,更新所以u匹配的子值,删除父值时,删除所有的子值</span><br><span class="line">restrict:更新或删除父值可能会出现孤立的子值,从而阻止事务</span><br><span class="line">no action:不干涉执行,只是观察</span><br><span class="line"></span><br><span class="line">deferrable控制定义的约束是立即强制实施还是延迟到整个事务结束</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+
+    <div>
+        
+          
+        
+    </div>
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/sqlite3/" rel="tag"># sqlite3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/04/28/2015-04-28-sqlite3-base/" rel="next" title="sqlite3的使用">
+                <i class="fa fa-chevron-left"></i> sqlite3的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015/05/06/2015-05-06-git/" rel="prev" title="git神图">
+                git神图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">许小强</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sqlite3的操作"><span class="nav-number">1.</span> <span class="nav-text">sqlite3的操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许小强</span> <a href="http://www.miitbeian.gov.cn/">粤ICP备14031336号</a>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

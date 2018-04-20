@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f93ec00131aca82e97299c9b3a8a0a27";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="markdown 翻译," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="吃了代码的猫" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="讲述Markdown的基本语法">
+<meta name="keywords" content="markdown 翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown基本语法">
+<meta property="og:url" content="https://xizhipian.com/blog/2014/10/27/2014-10-27-markdown2/index.html">
+<meta property="og:site_name" content="吃了代码的猫">
+<meta property="og:description" content="讲述Markdown的基本语法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-20T02:41:28.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markdown基本语法">
+<meta name="twitter:description" content="讲述Markdown的基本语法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xizhipian.com/blog/2014/10/27/2014-10-27-markdown2/"/>
+
+
+
+
+
+  <title>Markdown基本语法 | 吃了代码的猫</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-115524918-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">吃了代码的猫</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Fighting</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xizhipian.com/blog/blog/2014/10/27/2014-10-27-markdown2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="许小强">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吃了代码的猫">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Markdown基本语法</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-27T02:30:12+00:00">
+                2014-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  讲述Markdown的基本语法
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文为<a href="http://antwork.github.io" target="_blank" rel="noopener">antwork</a>原创，转载请注明作者及出处！</p>
+<p>翻译原文网站:<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">http://daringfireball.net/projects/markdown/</a>,根据原文分为两篇来开展,有兴趣且英文好的童鞋建议看原版 :)</p>
+<ul>
+<li><a href="site.baseurl/2014/10/27/markdown2.md">Markdown基本语法</a>   </li>
+<li><a href="site.baseurl/2014/10/27/markdown3.md">Markdown语法进阶</a>  </li>
+</ul>
+<p>本文原文地址:<a href="http://daringfireball.net/projects/markdown/basics" target="_blank" rel="noopener">http://daringfireball.net/projects/markdown/basics</a></p>
+<h1 id="学习Markdonw语法主旨"><a href="#学习Markdonw语法主旨" class="headerlink" title="学习Markdonw语法主旨"></a>学习Markdonw语法主旨</h1><hr>
+<p>本页面提供一个使用Markdown的简单使用方法,<a href="site.baseurl/2014/10/27/markdown3.md">语法</a>页面提供更加完整详细的文档和语法特征,Markdown很容易学,你可以查阅一些实例就能学会.本文的实例采用样式前后对比的形式,展示实例的语法和输出的HTML,(译者再加入了实际的显示效果)</p>
+<p>学习markdown最简单有效的方法就是实践, <a href="http://daringfireball.net/projects/markdown/dingus" target="_blank" rel="noopener">Dingus</a>可以让你在线输入Markdown格式的纯文本,然后转化为XHTML.</p>
+<p>注释:原文档本身就是用Markdown;查看原网页源代码请单击<a href="http://daringfireball.net/projects/markdown/syntax.text" target="_blank" rel="noopener">这里</a>  </p>
+<h2 id="段落-标题-区块"><a href="#段落-标题-区块" class="headerlink" title="##段落,标题,区块"></a>##段落,标题,区块</h2><p>段落是由一到多行连续的文本组成,使用一到多个空行进行分隔.(Markdown的空行看起来像一个空行: 一行只包含空白和tabs的话就被当做一个空行).普通的段落不应该使用空白或tab来进行缩进   </p>
+<p>Markdown 提供两种样式的标题:Setext 和 atx<br>采用Setext样式的的</p><h1>和<h2>分别通过在文字底部添加等号(=)和连字号(-)来实现<br>atx样式的标题通过在行首添加1-6个井字号(#)来标记标题等级(h1~h6)<p></p>
+<p>Blockquotes使用邮件格式的’&gt;’大于号来标明</p>
+<ul>
+<li>####MarkDown代码:   </li>
+</ul>
+<hr>
+<pre><code>A First Level Header
+====================
+
+A Second Level Header
+---------------------
+
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+</code></pre><p>dog’s back.</p>
+<pre><code>### Header 3
+
+&gt; This is a blockquote.
+&gt; 
+&gt; This is the second paragraph in the blockquote.
+&gt;
+&gt; ## This is an H2 in a blockquote
+</code></pre><hr>
+<ul>
+<li>####输出HTML代码:</li>
+</ul>
+<hr>
+<pre><code>&lt;h1&gt;A First Level Header&lt;/h1&gt;
+
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+
+&lt;p&gt;Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.&lt;/p&gt;
+
+&lt;p&gt;The quick brown fox jumped over the lazy
+dog&apos;s back.&lt;/p&gt;
+
+&lt;h3&gt;Header 3&lt;/h3&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;This is a blockquote.&lt;/p&gt;
+
+    &lt;p&gt;This is the second paragraph in the blockquote.&lt;/p&gt;
+
+    &lt;h2&gt;This is an H2 in a blockquote&lt;/h2&gt;
+&lt;/blockquote&gt;
+</code></pre><hr>
+<ul>
+<li>####实际效果:</li>
+</ul>
+<hr>
+<h1 id="A-First-Level-Header"><a href="#A-First-Level-Header" class="headerlink" title="A First Level Header"></a>A First Level Header</h1><h2 id="A-Second-Level-Header"><a href="#A-Second-Level-Header" class="headerlink" title="A Second Level Header"></a>A Second Level Header</h2><p>Now is the time for all good men to come to<br>the aid of their country. This is just a<br>regular paragraph.</p>
+<p>The quick brown fox jumped over the lazy<br>dog’s back.</p>
+<h3 id="Header-3"><a href="#Header-3" class="headerlink" title="Header 3"></a>Header 3</h3><blockquote>
+<p>This is a blockquote.</p>
+<p>This is the second paragraph in the blockquote.</p>
+<h2 id="This-is-an-H2-in-a-blockquote"><a href="#This-is-an-H2-in-a-blockquote" class="headerlink" title="This is an H2 in a blockquote"></a>This is an H2 in a blockquote</h2></blockquote>
+<hr>
+<p>##强调语法:  </p>
+<p>Markdown使用星号和下划线来强调</p>
+<ul>
+<li>####Markdown代码:   </li>
+</ul>
+<hr>
+<pre><code>Some of these words *are emphasized*.   
+Some of these words _are emphasized also_.   
+
+Use two asterisks for **strong emphasis**.  
+Or, if you prefer, __use two underscores instead__. 
+</code></pre><hr>
+<ul>
+<li><p>####输出为HTML:</p>
+<hr>
+  <p>Some of these words <em>are emphasized</em>. <br><br>  Some of these words <em>are emphasized also</em>.   </p>
+
+  <p>Use two asterisks for <strong>strong emphasis</strong>. <br><br>  Or, if you prefer, <strong>use two underscores instead</strong>. </p>
+
+</li>
+</ul>
+<hr>
+<ul>
+<li>####显示效果:   </li>
+</ul>
+<hr>
+<p>Some of these words <em>are emphasized</em>.<br>Some of these words <em>are emphasized also</em>.   </p>
+<p>Use two asterisks for <strong>strong emphasis</strong>.<br>Or, if you prefer, <strong>use two underscores instead</strong>.   </p>
+<hr>
+<p>##列表<br>无序列表采用星号,减号和加号来标记</p>
+<ul>
+<li>####Markdown源码  </li>
+</ul>
+<hr>
+<pre><code>*   Candy.
+*   Gum.
+*   Booze.   
+</code></pre><hr>
+<ul>
+<li>####输出HTML</li>
+</ul>
+<hr>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Candy.&lt;/li&gt;
+&lt;li&gt;Gum.&lt;/li&gt;
+&lt;li&gt;Booze.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><hr>
+<ul>
+<li>####实际效果    </li>
+</ul>
+<hr>
+<ul>
+<li>Candy.</li>
+<li>Gum.</li>
+<li>Booze.</li>
+</ul>
+<hr>
+<p>有序列表采用常规数字加句号   </p>
+<ul>
+<li>####Markdown有序列表源码    </li>
+</ul>
+<hr>
+<pre><code>1. Red  
+2. Green
+3. Blue
+</code></pre><hr>
+<ul>
+<li>####输出为HTML源码        </li>
+</ul>
+<hr>
+<pre><code>&lt;ol&gt;
+&lt;li&gt;Red  &lt;/li&gt;
+&lt;li&gt;Green&lt;/li&gt;
+&lt;li&gt;Blue&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre><hr>
+<ul>
+<li>####实际效果            </li>
+</ul>
+<hr>
+<ol>
+<li>Red  </li>
+<li>Green</li>
+<li>Blue</li>
+</ol>
+<hr>
+<p>如果你在行间添加了空行,你会得到段落标识</p><p>来标记列表项,你可以使用4个空格或者1个tab来创造多段落列表项    </p>
+<ul>
+<li>####Markdown源码:    </li>
+</ul>
+<hr>
+<pre><code>*   A list item.
+
+    With multiple paragraphs.
+
+*   Another item in the list.    
+</code></pre><hr>
+<ul>
+<li>####输出:    </li>
+</ul>
+<hr>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A list item.&lt;/p&gt;
+&lt;p&gt;With multiple paragraphs.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another item in the list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;    
+</code></pre><hr>
+<ul>
+<li>####显示效果    </li>
+</ul>
+<hr>
+<ul>
+<li><p>A list item.</p>
+<p>With multiple paragraphs.</p>
+</li>
+<li><p>Another item in the list.    </p>
+</li>
+</ul>
+<hr>
+<h2 id="链接"><a href="#链接" class="headerlink" title="##链接"></a>##链接</h2><p>Markdown支持两种形式的链接:内联和引用,两种形式都采用方括号来划定链接文字界限.    </p>
+<p>内联链接使用圆括号将链接紧跟在链接文字后,例如:</p>
+<hr>
+<pre><code>这是一个[链接](http://example.com/).    
+</code></pre><hr>
+<p>输出为HTML:    </p>
+<hr>
+<pre><code>&lt;p&gt;这是一个&lt;a href=&quot;http://example.com/&quot;&gt;链接&lt;/a&gt;.&lt;/p&gt;
+</code></pre><hr>
+<p>显示效果:</p>
+<hr>
+<p>这是一个<a href="http://example.com/" target="_blank" rel="noopener">链接</a>.    </p>
+<hr>
+<p>可选择的,你可以在圆括号内包含一个title属性:</p>
+<hr>
+<pre><code>This is an [example link](http://example.com/ &quot;With a Title&quot;).    
+</code></pre><hr>
+<p>输出为HTML:    </p>
+<hr>
+<pre><code>&lt;p&gt;This is an &lt;a href=&quot;http://example.com/&quot; title=&quot;With a Title&quot;&gt;
+</code></pre><p>example link.</p><p></p>
+<hr>
+<p>显示效果:</p>
+<hr>
+<p>his is an <a href="http://example.com/" title="With a Title" target="_blank" rel="noopener">example link</a>.        </p>
+<p>关联样式链接允许你通过名字去关联链接,允许你在文档的其他地方定义:</p>
+<pre><code>I get 10 times more traffic from [Google][1] than from
+</code></pre><p><a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a>.</p>
+<pre><code>[1]: http://google.com/        &quot;Google&quot;
+[2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;
+[3]: http://search.msn.com/    &quot;MSN Search&quot;    
+</code></pre><p>转化为HTML代码:</p>
+<pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot;
+</code></pre><p>title=”Google”&gt;Google than from <a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a>.</p><p></p>
+<p>实际显示效果:  </p>
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google" target="_blank" rel="noopener">Google</a> than from<br><a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a>.</p>
+<hr>
+<p>title属性是可选的,超链接名字可以包含字母,数字和空格,但是大小写不敏感,例如以下源码:</p>
+<pre><code>I start my morning with a cup of coffee and
+[The New York Times][NY Times].
+
+[ny times]: http://www.nytimes.com/
+</code></pre><p>输出为HTML代码:    </p>
+<pre><code>&lt;p&gt;I start my morning with a cup of coffee and
+</code></pre><p><a href="http://www.nytimes.com/" target="_blank" rel="noopener">The New York Times</a>.</p><p></p>
+<p>实际显示效果:</p>
+<hr>
+<p>I start my morning with a cup of coffee and<br><a href="http://www.nytimes.com/" target="_blank" rel="noopener">The New York Times</a>.</p>
+<hr>
+<p>##图片<br>图片语法非常像链接语法.<br>内联样式如下(标题可选):</p>
+<pre><code>![alt text](/path/to/im.jpg &quot;Title&quot;)
+</code></pre><p>引用样式:</p>
+<pre><code>![alt text][id]
+
+[id]: /path/to/img.jpg &quot;Title&quot;
+</code></pre><p>输出HTML为:</p>
+<pre><code>&lt;img src=&quot;/path/to/img.jpg&quot; alt=&quot;alt text&quot; title=&quot;Title&quot; /&gt;
+</code></pre><p>##代码<br>在常规段落中,你可以用反引号将文字括起来,任何&amp;号和尖括号(&lt;&gt;)将会自动被翻译为HTML实体,这样就方便了使用Markdown来创建HTML的示例:</p>
+<pre><code>I strongly recommend against using any `&lt;blink&gt;` tags.
+
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+</code></pre><p>输出为HTML:</p>
+<pre><code>&lt;p&gt;I strongly recommend against using any
+&lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+
+&lt;p&gt;I wish SmartyPants used named entities like
+&lt;code&gt;&amp;amp;mdash;&lt;/code&gt; instead of decimal-encoded
+entites like &lt;code&gt;&amp;amp;#8212;&lt;/code&gt;.&lt;/p&gt;
+</code></pre><p>实际显示效果:</p>
+<hr>
+<p>I strongly recommend against using any <code>&lt;blink&gt;</code> tags.</p>
+<p>I wish SmartyPants used named entities like <code>&amp;mdash;</code><br>instead of decimal-encoded entites like <code>&amp;#8212;</code>.</p>
+<hr>
+<p>为了指定某一块预定格式(pre-formatted)代码,你可以在每一行代码前添加4个空格或者一个tab.就像使用代码区域,&amp;,&lt;,和&gt;字符一样,会被自动转义.<br>Markdown源码:</p>
+<pre><code>If you want your page to validate under XHTML 1.0 Strict,
+you&apos;ve got to put paragraph tags in your blockquotes:
+
+&lt;blockquote&gt;
+    &lt;p&gt;For example.&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre><p>得到HTML代码如下:</p>
+<pre><code>&lt;p&gt;If you want your page to validate under XHTML 1.0 Strict,
+you&apos;ve got to put paragraph tags in your blockquotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;blockquote&amp;gt;
+    &amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre><hr>
+<p>(完)</p>
+</h2></h1>
+      
+    </div>
+    
+    
+    
+
+
+    <div>
+        
+          
+        
+    </div>
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/markdown-翻译/" rel="tag"># markdown 翻译</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/10/26/2014-10-26-study-markdown/" rel="next" title="Markdown语法的学习和实践">
+                <i class="fa fa-chevron-left"></i> Markdown语法的学习和实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/10/27/2014-10-27-markdown3/" rel="prev" title="Markdown语法进阶">
+                Markdown语法进阶 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">许小强</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习Markdonw语法主旨"><span class="nav-number">1.</span> <span class="nav-text">学习Markdonw语法主旨</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#段落-标题-区块"><span class="nav-number">1.1.</span> <span class="nav-text">##段落,标题,区块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">和分别通过在文字底部添加等号(=)和连字号(-)来实现atx样式的标题通过在行首添加1-6个井字号(#)来标记标题等级(h1~h6)
+Blockquotes使用邮件格式的’&gt;’大于号来标明
+
+####MarkDown代码:   
+
+
+A First Level Header
+====================
+
+A Second Level Header
+---------------------
+
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+dog’s back.
+### Header 3
+
+&gt; This is a blockquote.
+&gt; 
+&gt; This is the second paragraph in the blockquote.
+&gt;
+&gt; ## This is an H2 in a blockquote
+
+
+####输出HTML代码:
+
+
+&lt;h1&gt;A First Level Header&lt;/h1&gt;
+
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+
+&lt;p&gt;Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.&lt;/p&gt;
+
+&lt;p&gt;The quick brown fox jumped over the lazy
+dog&#39;s back.&lt;/p&gt;
+
+&lt;h3&gt;Header 3&lt;/h3&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;This is a blockquote.&lt;/p&gt;
+
+    &lt;p&gt;This is the second paragraph in the blockquote.&lt;/p&gt;
+
+    &lt;h2&gt;This is an H2 in a blockquote&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+
+####实际效果:
+
+
+A First Level HeaderA Second Level HeaderNow is the time for all good men to come tothe aid of their country. This is just aregular paragraph.
+The quick brown fox jumped over the lazydog’s back.
+Header 3
+This is a blockquote.
+This is the second paragraph in the blockquote.
+This is an H2 in a blockquote
+
+##强调语法:  
+Markdown使用星号和下划线来强调
+
+####Markdown代码:   
+
+
+Some of these words *are emphasized*.   
+Some of these words _are emphasized also_.   
+
+Use two asterisks for **strong emphasis**.  
+Or, if you prefer, __use two underscores instead__. 
+
+
+####输出为HTML:
+
+  Some of these words are emphasized.   Some of these words are emphasized also.   
+
+  Use two asterisks for strong emphasis.   Or, if you prefer, use two underscores instead. 
+
+
+
+
+
+####显示效果:   
+
+
+Some of these words are emphasized.Some of these words are emphasized also.   
+Use two asterisks for strong emphasis.Or, if you prefer, use two underscores instead.   
+
+##列表无序列表采用星号,减号和加号来标记
+
+####Markdown源码  
+
+
+*   Candy.
+*   Gum.
+*   Booze.   
+
+
+####输出HTML
+
+
+&lt;ul&gt;
+&lt;li&gt;Candy.&lt;/li&gt;
+&lt;li&gt;Gum.&lt;/li&gt;
+&lt;li&gt;Booze.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+####实际效果    
+
+
+
+Candy.
+Gum.
+Booze.
+
+
+有序列表采用常规数字加句号   
+
+####Markdown有序列表源码    
+
+
+1. Red  
+2. Green
+3. Blue
+
+
+####输出为HTML源码        
+
+
+&lt;ol&gt;
+&lt;li&gt;Red  &lt;/li&gt;
+&lt;li&gt;Green&lt;/li&gt;
+&lt;li&gt;Blue&lt;/li&gt;
+&lt;/ol&gt;
+
+
+####实际效果            
+
+
+
+Red  
+Green
+Blue
+
+
+如果你在行间添加了空行,你会得到段落标识来标记列表项,你可以使用4个空格或者1个tab来创造多段落列表项    
+
+####Markdown源码:    
+
+
+*   A list item.
+
+    With multiple paragraphs.
+
+*   Another item in the list.    
+
+
+####输出:    
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A list item.&lt;/p&gt;
+&lt;p&gt;With multiple paragraphs.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another item in the list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;    
+
+
+####显示效果    
+
+
+
+A list item.
+With multiple paragraphs.
+
+Another item in the list.    
+
+
+
+##链接Markdown支持两种形式的链接:内联和引用,两种形式都采用方括号来划定链接文字界限.    
+内联链接使用圆括号将链接紧跟在链接文字后,例如:
+
+这是一个[链接](http://example.com/).    
+
+输出为HTML:    
+
+&lt;p&gt;这是一个&lt;a href=&quot;http://example.com/&quot;&gt;链接&lt;/a&gt;.&lt;/p&gt;
+
+显示效果:
+
+这是一个链接.    
+
+可选择的,你可以在圆括号内包含一个title属性:
+
+This is an [example link](http://example.com/ &quot;With a Title&quot;).    
+
+输出为HTML:    
+
+&lt;p&gt;This is an &lt;a href=&quot;http://example.com/&quot; title=&quot;With a Title&quot;&gt;
+example link.
+
+显示效果:
+
+his is an example link.        
+关联样式链接允许你通过名字去关联链接,允许你在文档的其他地方定义:
+I get 10 times more traffic from [Google][1] than from
+Yahoo or MSN.
+[1]: http://google.com/        &quot;Google&quot;
+[2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;
+[3]: http://search.msn.com/    &quot;MSN Search&quot;    
+转化为HTML代码:
+&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot;
+title=”Google”&gt;Google than from Yahoo or MSN.
+实际显示效果:  
+I get 10 times more traffic from Google than fromYahoo or MSN.
+
+title属性是可选的,超链接名字可以包含字母,数字和空格,但是大小写不敏感,例如以下源码:
+I start my morning with a cup of coffee and
+[The New York Times][NY Times].
+
+[ny times]: http://www.nytimes.com/
+输出为HTML代码:    
+&lt;p&gt;I start my morning with a cup of coffee and
+The New York Times.
+实际显示效果:
+
+I start my morning with a cup of coffee andThe New York Times.
+
+##图片图片语法非常像链接语法.内联样式如下(标题可选):
+![alt text](/path/to/im.jpg &quot;Title&quot;)
+引用样式:
+![alt text][id]
+
+[id]: /path/to/img.jpg &quot;Title&quot;
+输出HTML为:
+&lt;img src=&quot;/path/to/img.jpg&quot; alt=&quot;alt text&quot; title=&quot;Title&quot; /&gt;
+##代码在常规段落中,你可以用反引号将文字括起来,任何&amp;号和尖括号(&lt;&gt;)将会自动被翻译为HTML实体,这样就方便了使用Markdown来创建HTML的示例:
+I strongly recommend against using any `&lt;blink&gt;` tags.
+
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+输出为HTML:
+&lt;p&gt;I strongly recommend against using any
+&lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+
+&lt;p&gt;I wish SmartyPants used named entities like
+&lt;code&gt;&amp;amp;mdash;&lt;/code&gt; instead of decimal-encoded
+entites like &lt;code&gt;&amp;amp;#8212;&lt;/code&gt;.&lt;/p&gt;
+实际显示效果:
+
+I strongly recommend against using any &lt;blink&gt; tags.
+I wish SmartyPants used named entities like &amp;mdash;instead of decimal-encoded entites like &amp;#8212;.
+
+为了指定某一块预定格式(pre-formatted)代码,你可以在每一行代码前添加4个空格或者一个tab.就像使用代码区域,&amp;,&lt;,和&gt;字符一样,会被自动转义.Markdown源码:
+If you want your page to validate under XHTML 1.0 Strict,
+you&#39;ve got to put paragraph tags in your blockquotes:
+
+&lt;blockquote&gt;
+    &lt;p&gt;For example.&lt;/p&gt;
+&lt;/blockquote&gt;
+得到HTML代码如下:
+&lt;p&gt;If you want your page to validate under XHTML 1.0 Strict,
+you&#39;ve got to put paragraph tags in your blockquotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;blockquote&amp;gt;
+    &amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+(完)
+</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">分别通过在文字底部添加等号(=)和连字号(-)来实现atx样式的标题通过在行首添加1-6个井字号(#)来标记标题等级(h1~h6)
+Blockquotes使用邮件格式的’&gt;’大于号来标明
+
+####MarkDown代码:   
+
+
+A First Level Header
+====================
+
+A Second Level Header
+---------------------
+
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+dog’s back.
+### Header 3
+
+&gt; This is a blockquote.
+&gt; 
+&gt; This is the second paragraph in the blockquote.
+&gt;
+&gt; ## This is an H2 in a blockquote
+
+
+####输出HTML代码:
+
+
+&lt;h1&gt;A First Level Header&lt;/h1&gt;
+
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+
+&lt;p&gt;Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.&lt;/p&gt;
+
+&lt;p&gt;The quick brown fox jumped over the lazy
+dog&#39;s back.&lt;/p&gt;
+
+&lt;h3&gt;Header 3&lt;/h3&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;This is a blockquote.&lt;/p&gt;
+
+    &lt;p&gt;This is the second paragraph in the blockquote.&lt;/p&gt;
+
+    &lt;h2&gt;This is an H2 in a blockquote&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+
+####实际效果:
+
+
+A First Level HeaderA Second Level HeaderNow is the time for all good men to come tothe aid of their country. This is just aregular paragraph.
+The quick brown fox jumped over the lazydog’s back.
+Header 3
+This is a blockquote.
+This is the second paragraph in the blockquote.
+This is an H2 in a blockquote
+
+##强调语法:  
+Markdown使用星号和下划线来强调
+
+####Markdown代码:   
+
+
+Some of these words *are emphasized*.   
+Some of these words _are emphasized also_.   
+
+Use two asterisks for **strong emphasis**.  
+Or, if you prefer, __use two underscores instead__. 
+
+
+####输出为HTML:
+
+  Some of these words are emphasized.   Some of these words are emphasized also.   
+
+  Use two asterisks for strong emphasis.   Or, if you prefer, use two underscores instead. 
+
+
+
+
+
+####显示效果:   
+
+
+Some of these words are emphasized.Some of these words are emphasized also.   
+Use two asterisks for strong emphasis.Or, if you prefer, use two underscores instead.   
+
+##列表无序列表采用星号,减号和加号来标记
+
+####Markdown源码  
+
+
+*   Candy.
+*   Gum.
+*   Booze.   
+
+
+####输出HTML
+
+
+&lt;ul&gt;
+&lt;li&gt;Candy.&lt;/li&gt;
+&lt;li&gt;Gum.&lt;/li&gt;
+&lt;li&gt;Booze.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+####实际效果    
+
+
+
+Candy.
+Gum.
+Booze.
+
+
+有序列表采用常规数字加句号   
+
+####Markdown有序列表源码    
+
+
+1. Red  
+2. Green
+3. Blue
+
+
+####输出为HTML源码        
+
+
+&lt;ol&gt;
+&lt;li&gt;Red  &lt;/li&gt;
+&lt;li&gt;Green&lt;/li&gt;
+&lt;li&gt;Blue&lt;/li&gt;
+&lt;/ol&gt;
+
+
+####实际效果            
+
+
+
+Red  
+Green
+Blue
+
+
+如果你在行间添加了空行,你会得到段落标识来标记列表项,你可以使用4个空格或者1个tab来创造多段落列表项    
+
+####Markdown源码:    
+
+
+*   A list item.
+
+    With multiple paragraphs.
+
+*   Another item in the list.    
+
+
+####输出:    
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A list item.&lt;/p&gt;
+&lt;p&gt;With multiple paragraphs.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another item in the list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;    
+
+
+####显示效果    
+
+
+
+A list item.
+With multiple paragraphs.
+
+Another item in the list.    
+
+
+
+##链接Markdown支持两种形式的链接:内联和引用,两种形式都采用方括号来划定链接文字界限.    
+内联链接使用圆括号将链接紧跟在链接文字后,例如:
+
+这是一个[链接](http://example.com/).    
+
+输出为HTML:    
+
+&lt;p&gt;这是一个&lt;a href=&quot;http://example.com/&quot;&gt;链接&lt;/a&gt;.&lt;/p&gt;
+
+显示效果:
+
+这是一个链接.    
+
+可选择的,你可以在圆括号内包含一个title属性:
+
+This is an [example link](http://example.com/ &quot;With a Title&quot;).    
+
+输出为HTML:    
+
+&lt;p&gt;This is an &lt;a href=&quot;http://example.com/&quot; title=&quot;With a Title&quot;&gt;
+example link.
+
+显示效果:
+
+his is an example link.        
+关联样式链接允许你通过名字去关联链接,允许你在文档的其他地方定义:
+I get 10 times more traffic from [Google][1] than from
+Yahoo or MSN.
+[1]: http://google.com/        &quot;Google&quot;
+[2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;
+[3]: http://search.msn.com/    &quot;MSN Search&quot;    
+转化为HTML代码:
+&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot;
+title=”Google”&gt;Google than from Yahoo or MSN.
+实际显示效果:  
+I get 10 times more traffic from Google than fromYahoo or MSN.
+
+title属性是可选的,超链接名字可以包含字母,数字和空格,但是大小写不敏感,例如以下源码:
+I start my morning with a cup of coffee and
+[The New York Times][NY Times].
+
+[ny times]: http://www.nytimes.com/
+输出为HTML代码:    
+&lt;p&gt;I start my morning with a cup of coffee and
+The New York Times.
+实际显示效果:
+
+I start my morning with a cup of coffee andThe New York Times.
+
+##图片图片语法非常像链接语法.内联样式如下(标题可选):
+![alt text](/path/to/im.jpg &quot;Title&quot;)
+引用样式:
+![alt text][id]
+
+[id]: /path/to/img.jpg &quot;Title&quot;
+输出HTML为:
+&lt;img src=&quot;/path/to/img.jpg&quot; alt=&quot;alt text&quot; title=&quot;Title&quot; /&gt;
+##代码在常规段落中,你可以用反引号将文字括起来,任何&amp;号和尖括号(&lt;&gt;)将会自动被翻译为HTML实体,这样就方便了使用Markdown来创建HTML的示例:
+I strongly recommend against using any `&lt;blink&gt;` tags.
+
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+输出为HTML:
+&lt;p&gt;I strongly recommend against using any
+&lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+
+&lt;p&gt;I wish SmartyPants used named entities like
+&lt;code&gt;&amp;amp;mdash;&lt;/code&gt; instead of decimal-encoded
+entites like &lt;code&gt;&amp;amp;#8212;&lt;/code&gt;.&lt;/p&gt;
+实际显示效果:
+
+I strongly recommend against using any &lt;blink&gt; tags.
+I wish SmartyPants used named entities like &amp;mdash;instead of decimal-encoded entites like &amp;#8212;.
+
+为了指定某一块预定格式(pre-formatted)代码,你可以在每一行代码前添加4个空格或者一个tab.就像使用代码区域,&amp;,&lt;,和&gt;字符一样,会被自动转义.Markdown源码:
+If you want your page to validate under XHTML 1.0 Strict,
+you&#39;ve got to put paragraph tags in your blockquotes:
+
+&lt;blockquote&gt;
+    &lt;p&gt;For example.&lt;/p&gt;
+&lt;/blockquote&gt;
+得到HTML代码如下:
+&lt;p&gt;If you want your page to validate under XHTML 1.0 Strict,
+you&#39;ve got to put paragraph tags in your blockquotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;blockquote&amp;gt;
+    &amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+(完)
+</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-First-Level-Header"><span class="nav-number">3.</span> <span class="nav-text">A First Level Header</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Second-Level-Header"><span class="nav-number">3.1.</span> <span class="nav-text">A Second Level Header</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-3"><span class="nav-number">3.1.1.</span> <span class="nav-text">Header 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#This-is-an-H2-in-a-blockquote"><span class="nav-number">3.2.</span> <span class="nav-text">This is an H2 in a blockquote</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">3.3.</span> <span class="nav-text">##链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许小强</span> <a href="http://www.miitbeian.gov.cn/">粤ICP备14031336号</a>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

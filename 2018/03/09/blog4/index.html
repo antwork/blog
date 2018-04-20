@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f93ec00131aca82e97299c9b3a8a0a27";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="travis,ci,blog,hexo,github,ssh," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="吃了代码的猫" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="travis的使用其实挺简单，简略步骤：  使用github账号登录官网https://travis-ci.org 找到项目，打开自动测试开关，添加Github个人token用于Travis推送到github 项目中添加.travis.yml配置文件 提交代码github Traivis.ci开始自动部署  1. 获取Github personal accesstoken步骤 方便travis免密">
+<meta name="keywords" content="travis,ci,blog,hexo,github,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建博客-自动化部署Travis">
+<meta property="og:url" content="https://xizhipian.com/blog/2018/03/09/blog4/index.html">
+<meta property="og:site_name" content="吃了代码的猫">
+<meta property="og:description" content="travis的使用其实挺简单，简略步骤：  使用github账号登录官网https://travis-ci.org 找到项目，打开自动测试开关，添加Github个人token用于Travis推送到github 项目中添加.travis.yml配置文件 提交代码github Traivis.ci开始自动部署  1. 获取Github personal accesstoken步骤 方便travis免密">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token0.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token1.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token2.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token3.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token4.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/github_token5.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/travis_0.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/travis1.png">
+<meta property="og:image" content="https://xizhipian.com/blog/assets/githubblog/travis_setting.png">
+<meta property="og:updated_time" content="2018-04-20T02:41:28.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建博客-自动化部署Travis">
+<meta name="twitter:description" content="travis的使用其实挺简单，简略步骤：  使用github账号登录官网https://travis-ci.org 找到项目，打开自动测试开关，添加Github个人token用于Travis推送到github 项目中添加.travis.yml配置文件 提交代码github Traivis.ci开始自动部署  1. 获取Github personal accesstoken步骤 方便travis免密">
+<meta name="twitter:image" content="https://xizhipian.com/blog/assets/githubblog/github_token0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xizhipian.com/blog/2018/03/09/blog4/"/>
+
+
+
+
+
+  <title>创建博客-自动化部署Travis | 吃了代码的猫</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-115524918-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">吃了代码的猫</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Fighting</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xizhipian.com/blog/blog/2018/03/09/blog4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="许小强">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吃了代码的猫">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">创建博客-自动化部署Travis</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T14:52:07+00:00">
+                2018-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读次数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>travis的使用其实挺简单，简略步骤：</p>
+<ol>
+<li>使用github账号登录官网<a href="https://travis-ci.org" target="_blank" rel="noopener">https://travis-ci.org</a></li>
+<li>找到项目，打开自动测试开关，添加Github个人token用于Travis推送到github</li>
+<li>项目中添加.travis.yml配置文件</li>
+<li>提交代码github</li>
+<li>Traivis.ci开始自动部署</li>
+</ol>
+<h3 id="1-获取Github-personal-accesstoken步骤"><a href="#1-获取Github-personal-accesstoken步骤" class="headerlink" title="1. 获取Github personal accesstoken步骤"></a>1. 获取Github personal accesstoken步骤</h3><blockquote>
+<p>方便travis免密推送内容到Github</p>
+</blockquote>
+<ol>
+<li>打开github, 单击头像 - 设置<br><img src="/blog/assets/githubblog/github_token0.png" alt="github设置"></li>
+<li>左边找到 Developers settings<br><img src="/blog/assets/githubblog/github_token1.png" alt="Developer settings"></li>
+<li>选择”Personal access token” - “Generate new token” - 勾选”Repo” - “Generate”<br><img src="/blog/assets/githubblog/github_token2.png" alt=""><br><img src="/blog/assets/githubblog/github_token3.png" alt=""><br><img src="/blog/assets/githubblog/github_token4.png" alt=""></li>
+<li>复制生成的Token（因为后期再也看不到，建议另外存储）<br><img src="/blog/assets/githubblog/github_token5.png" alt=""></li>
+</ol>
+<h3 id="配置travis"><a href="#配置travis" class="headerlink" title="配置travis"></a>配置travis</h3><ol>
+<li>打开travis官网 - 单击头像 - 找到博客仓库 - 单击开关开启自动测试<br><img src="/blog/assets/githubblog/travis_0.png" alt=""><br><em>开启成功显示绿色箭头</em><br><img src="/blog/assets/githubblog/travis1.png" alt=""></li>
+<li>travis中单击项目博客仓库名称进入配置项，选择”More options” - “Settings” - 在”General”中勾选”Build if only .travis.yml is present”</li>
+<li><p>在Environmen Variables中填入GH_TOKEN, 黏贴github personal accesstoken, 单击Add(<em>不要勾Display values in build log， 会暴露该值)</em></p>
+<blockquote>
+<p>注意底部 Cron Jobs中勾选分支是否为blog-source，这里应该选择了github默认分支<br><img src="/blog/assets/githubblog/travis_setting.png" alt=""></p>
+</blockquote>
+</li>
+<li><p>打开博客本地仓库目录，添加.travis.yml文件，输入以下内容</p>
+</li>
+</ol>
+<blockquote>
+<p>[…]为替换内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">language: node_js</span><br><span class="line">node_js: stable</span><br><span class="line">install:</span><br><span class="line">- npm install</span><br><span class="line">script:</span><br><span class="line">- hexo clean</span><br><span class="line">- hexo g</span><br><span class="line">- cd ./public</span><br><span class="line">- git init</span><br><span class="line">- git config user.name &quot;[你的名称]&quot;</span><br><span class="line">- git config user.email &quot;[github邮箱账号]&quot;</span><br><span class="line">- git add .</span><br><span class="line">- git commit -m &quot;Travis CI Auto Builder&quot;</span><br><span class="line">- git push --force --quiet &quot;https://$&#123;GH_TOKEN&#125;@$&#123;GH_REF&#125;&quot; master:master</span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">  - blog-source</span><br><span class="line">env:</span><br><span class="line">  global:</span><br><span class="line">  - GH_REF: [博客代码仓库地址]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>提交本地内容到Github</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;init project&quot;</span><br><span class="line">$ git push origin blog-source</span><br></pre></td></tr></table></figure>
+<ol>
+<li>检测效果<br> 打开Github Pages链接，地址为: https://[你的github账号].github.io/myblog/ , 检查页面是否正常<br> Github Pages配置方法参照<a href="/blog/2018/03/09/blog2/">创建博客-使用GitHub存储博客</a></li>
+</ol>
+<p><em>我的.travis.yml, 仅供参考</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">language: node_js</span><br><span class="line">node_js: stable</span><br><span class="line">install:</span><br><span class="line">- npm install</span><br><span class="line">script:</span><br><span class="line">- hexo clean</span><br><span class="line">- hexo g</span><br><span class="line">- cd ./public</span><br><span class="line">- git init</span><br><span class="line">- git config user.name &quot;antwork&quot;</span><br><span class="line">- git config user.email &quot;antwork@126.com&quot;</span><br><span class="line">- git add .</span><br><span class="line">- git commit -m &quot;Travis CI Auto Builder&quot;</span><br><span class="line">- git push --force --quiet &quot;https://$&#123;GH_TOKEN&#125;@$&#123;GH_REF&#125;&quot; master:master</span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">  - blog-source</span><br><span class="line">env:</span><br><span class="line">  global:</span><br><span class="line">  - GH_REF: github.com/antwork/myblog.git</span><br></pre></td></tr></table></figure>
+<h3 id="部署到自己的服务器"><a href="#部署到自己的服务器" class="headerlink" title="部署到自己的服务器"></a>部署到自己的服务器</h3><p>目前为止，Travis已经能够检测到Github blog-source分支变化，下一步是推送静态网站到自己的服务器。</p>
+<p><strong>原理</strong>：</p>
+<ol>
+<li>服务端部署的是静态网站，也就是github博客的master分支，所以需要您登录您的服务器，将github master分支checkout到你指定的文件夹，然后配置好nginx，配好能够查看您的博客就表示配置ok。</li>
+<li>travis部分：ssh登录到远程服务器，执行pull操作将github master分支更新到服务器。</li>
+</ol>
+<blockquote>
+<p>因为travis都是自动化，所以不能有任何人为参与，这里就需要使用到ssh passphase登录模式。</p>
+</blockquote>
+<p>相关步骤参照： </p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000011218410" target="_blank" rel="noopener">Travis CI 系列：自动化部署博客</a></li>
+<li><a href="https://segmentfault.com/a/1190000013242438" target="_blank" rel="noopener">不仅仅是前端er——折腾服务器武装自己</a></li>
+</ul>
+<p>补充几点：</p>
+<ol>
+<li>addons: 必须使用原文, 不能使用${ENV_VAR}，travis中定义的环境变量， 预计是addon太早引入了，环境变量还未初始化或这里根本就没处理环境变量。所以只能是如下形式：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addons:</span><br><span class="line">  ssh_known_hosts: 118.24.152.130</span><br></pre></td></tr></table></figure>
+<ol>
+<li>ssh正确打开方式： <code>ssh username@hostip &quot;commands&quot;</code>，我犯的错误是以为travis能够顺序执行，所以代码都写在.travis.yml中，如</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">after_success:</span><br><span class="line">- ssh username@hostip</span><br><span class="line">- cd myblog</span><br><span class="line">- pull xxx</span><br></pre></td></tr></table></figure>
+<p>正确打开方式为，在服务端写一个执行脚本(如pullblog), 然后ssh部分改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">after_success:</span><br><span class="line">  - ssh root@118.24.152.130 &quot;./pullblog&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将服务端的命令打包为一个shell脚本, 对外隐藏了具体内容, 可以保护隐私内容。</p>
+</blockquote>
+<p><em>我的pullblog脚本如下：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;run begin&quot;</span><br><span class="line">cd /home/www/blog # 打开git文件夹</span><br><span class="line">git config user.name &quot;antwork&quot; # 修改name</span><br><span class="line">git config user.email &quot;antwork@126.com&quot; # 修改email</span><br><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br><span class="line">echo &quot;run end&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>注意我已经拉取博客仓库代码到服务器文件夹/home/www/blog中，所以travis只要执行pull就可以了    </li>
+<li>因为静态网站变化挺多的，所以合并时使用服务器版本。</li>
+</ul>
+</blockquote>
+<h3 id="关于ssh"><a href="#关于ssh" class="headerlink" title="关于ssh"></a>关于ssh</h3><p><a href="https://www.ssh.com/ssh/command/#sec-SSH-Command-in-Linux" target="_blank" rel="noopener">https://www.ssh.com/ssh/command/#sec-SSH-Command-in-Linux</a><br>在其他服务器上远程执行代码， 语法：<code>ssh hostname command</code><br>实际测试以下两个命令是等效的, 脚本应该是通过调用了eval(“字符串”）来实现调用功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh root@118.24.152.130 "ls /home/www"</span><br><span class="line">ssh root@118.24.152.130 ls /home/www</span><br></pre></td></tr></table></figure>
+<p>到此博客就算搭完了😊，后续博文只要写好后推送到github仓库，travis就会自动生成静态网站，然后推送回github，并且触发服务端的脚本来服务器的静态网站。写完三篇都累屎了，完结撒花~</p>
+<hr>
+<p>创建博客系列</p>
+<ul>
+<li><a href="/blog/2018/03/09/blog2/">创建博客-使用GitHub存储博客</a></li>
+<li><a href="/blog/2018/03/09/blog3/">创建博客-Hexo生成博客网站</a></li>
+<li><a href="/blog/2018/03/09/blog4/">创建博客-自动化部署Travis</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+
+    <div>
+        
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/blog/2018/03/09/blog4/">创建博客-自动化部署Travis</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 许小强 的个人博客">许小强</a></p>
+  <p><span>发布时间:</span>2018年03月09日 - 22:03</p>
+  <p><span>最后更新:</span>2018年04月20日 - 02:04</p>
+  <p><span>原始链接:</span><a href="/blog/2018/03/09/blog4/" title="创建博客-自动化部署Travis">https://xizhipian.com/blog/2018/03/09/blog4/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://xizhipian.com/blog/2018/03/09/blog4/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+  });
+    });  
+</script>
+
+        
+    </div>
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/travis/" rel="tag"># travis</a>
+          
+            <a href="/blog/tags/ci/" rel="tag"># ci</a>
+          
+            <a href="/blog/tags/blog/" rel="tag"># blog</a>
+          
+            <a href="/blog/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/blog/tags/github/" rel="tag"># github</a>
+          
+            <a href="/blog/tags/ssh/" rel="tag"># ssh</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/03/09/blog3/" rel="next" title="创建博客-Hexo生成博客网站">
+                <i class="fa fa-chevron-left"></i> 创建博客-Hexo生成博客网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/03/12/swiftbase/" rel="prev" title="Swift语言基础">
+                Swift语言基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">许小强</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-获取Github-personal-accesstoken步骤"><span class="nav-number">1.</span> <span class="nav-text">1. 获取Github personal accesstoken步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置travis"><span class="nav-number">2.</span> <span class="nav-text">配置travis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到自己的服务器"><span class="nav-number">3.</span> <span class="nav-text">部署到自己的服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于ssh"><span class="nav-number">4.</span> <span class="nav-text">关于ssh</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">许小强</span> <a href="http://www.miitbeian.gov.cn/">粤ICP备14031336号</a>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
